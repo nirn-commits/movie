@@ -71,7 +71,7 @@ export const Verse2: React.FC<{ t: number }> = ({ t }) => {
       <>
         <Typo text="7" x={W * 0.5} y={H * 0.36} size={640} color="pink" />
         <Row n={6} h={520} offset={1} />
-        <Typo text="口から出任せ 七変化" y={H * 0.1} size={80} color="white" />
+        <Typo text="口から出まかせ七変化" y={H * 0.1} size={80} color="white" />
       </>
     )),
     // あら、数が合わないわ：番号が飛んでいる
@@ -105,19 +105,20 @@ const Crowd: React.FC<{ k: number; text?: string; dark: boolean }> = ({ k, text,
 };
 
 const PRE2_LINES = [
-  { at: CONFIG.sections.pre2.from, text: "行儀よくして損をして" },
-  { at: Q.sonnayo, text: "そんな世の中 知ってるわ" },
+  { at: CONFIG.sections.pre2.from, text: "お行儀よくして損をして" },
+  { at: Q.orikou, text: "お利口ぶって馬鹿をみて" },
+  { at: Q.sonnayo, text: "そんな世の中、知ってるわ" },
   { at: Q.shiranpuri, text: "だから今日だけ知らんぷり" },
-  { at: Q.datte[0], text: "だって" },
-  { at: Q.datte[1], text: "なんで" },
-  { at: Q.datte[2], text: "なんで" },
-  { at: Q.datte[3], text: "だって" },
-  { at: 92.86, text: "" },
-  { at: Q.chotto[0], text: "ちょっと" },
-  { at: Q.chotto[1], text: "もっと" },
-  { at: Q.chotto[2], text: "もっと" },
-  { at: Q.chotto[3], text: "ちょ、もう" },
-  { at: Q.hanashi, text: "話にならないじゃない" },
+  { at: Q.datte[0], text: "だって！" },
+  { at: Q.datte[1], text: "（なんで？）" },
+  { at: Q.datte[2], text: "なんで！" },
+  { at: Q.datte[3], text: "（だって！）" },
+  { at: Q.doudou, text: "堂々巡りの論理武装" },
+  { at: Q.chotto[0], text: "ちょっと！" },
+  { at: Q.chotto[1], text: "（もっと！）" },
+  { at: Q.chotto[2], text: "もっと！" },
+  { at: Q.chotto[3], text: "（ちょっと！）" },
+  { at: Q.hanashi, text: "もう、話にならないじゃない！" },
 ];
 
 /** Pre-Chorus 2：裏の私を3人に増やして重ね、切り替えは最速（1拍ごと）。「約束なんて破るためにあるの？」で札にヒビ */

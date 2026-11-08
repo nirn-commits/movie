@@ -4,7 +4,7 @@ import { CONFIG } from "../config";
 import { CardRain, Chara, Typo, faceOf, randRange } from "../components/kit";
 import { Stage } from "../components/Stage";
 import { beatPhase, beatsIn, snap } from "../lib/beats";
-import { Shot, after, onBeat } from "../lib/shots";
+import { Shot, onBeat } from "../lib/shots";
 
 const W = CONFIG.width;
 const H = CONFIG.height;
@@ -25,11 +25,13 @@ const framings = (i: number) => {
 
 const LINES: { at: number; text: string; to?: number }[] = [
   { at: CONFIG.sections.chorus1.from, text: "あまのじゃくじゃく" },
-  { at: Q.ayayakoshii, text: "あー、ややこしい" },
+  { at: Q.ayayakoshii, text: "ああ、ややこしい！" },
+  { at: Q.shio, text: "甘い言葉に塩を振って" },
+  { at: Q.waratte, text: "笑って　怒って　また笑って" },
   { at: Q.hari, text: "心の針がくるくる回る" },
   { at: Q.chaban, text: "とんだ茶番も上等よ" },
-  { at: Q.uso, text: "嘘の裏側 裏の裏" },
-  { at: Q.hikkuri, text: "ひっくり返せば恋になる" },
+  { at: Q.uso, text: "嘘の裏側、裏の裏" },
+  { at: Q.hikkuri, text: "ひっくり返せば恋になる？" },
 ];
 
 /** 区間の歌詞を、その行の時間だけ出す */
@@ -120,7 +122,7 @@ export const Post: React.FC<{ t: number }> = ({ t }) => {
   const shown = scatBeats.filter((b) => t >= b);
   const words = shown.map((b, i) => {
     const seed = Math.round(b * 100);
-    const text = t >= Q.papapa && b >= Q.papapa ? "Pa" : i % 3 === 2 ? "ra" : "Ta";
+    const text = b >= Q.dadada ? (i % 2 ? "da" : "Da") : i % 3 === 2 ? "ra" : "Pa";
     return (
       <Typo
         key={i}
@@ -141,7 +143,7 @@ export const Post: React.FC<{ t: number }> = ({ t }) => {
         <AbsoluteFill style={{ transform: `scale(${bounce})` }}>
           {words.slice(-14)}
           <Chara id={GRIN} h={1150} cy={H * 0.56} />
-          <Typo text="Pa-pa-pa" y={H * 0.88} size={150} color="pink" outline="white" />
+          <Typo text={t < Q.dadada ? "Pa-pa-pa, parapapapa!" : "Da-da-da, dadadadada!"} y={H * 0.88} size={120} color="pink" outline="white" />
         </AbsoluteFill>
       ),
     },
@@ -155,21 +157,19 @@ export const Post: React.FC<{ t: number }> = ({ t }) => {
     onBeat(Q.yosomi, () => (
       <>
         <Chara id={GRIN} h={7000} cy={H * 0.5} focus={faceOf(GRIN)} />
-        <Typo text="よそ見はしないでね？" y={H * 0.9} size={72} color="white" outline="black" />
+        <Typo text="でも、よそ見はしないでね？" y={H * 0.9} size={72} color="white" outline="black" />
       </>
     )),
     ...neene.map((at, i) =>
       onBeat(at, () => (
         <>
           <Chara id={GRIN} h={[5200, 6200, 7600][i]} cy={H * 0.5} focus={faceOf(GRIN)} flip={i === 1} />
-          <Typo text="ねえ" x={[W * 0.2, W * 0.8, W * 0.5][i]} y={[H * 0.2, H * 0.8, H * 0.15][i]} size={130} color="pink" outline="white" />
         </>
       )),
     ),
-    onBeat(75.8, (local) => (
+    onBeat(75.8, () => (
       <>
         <Chara id={GRIN} h={1150} cy={H * 0.56} />
-        {after(local, 0, <Typo text="ねえ、ねえ、ねえ" y={H * 0.9} size={64} />)}
       </>
     )),
   ];

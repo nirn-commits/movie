@@ -64,8 +64,9 @@ export const CONFIG = {
       { fromSec: 145.36, degPerSec: 480 }, // Final Chorus
       { fromSec: 157.6, degPerSec: 0 }, // 4枚目で止まる
       { fromSec: 160.34, degPerSec: 120 }, // Outro：ここから遅くなる
-      { fromSec: 166.3, degPerSec: 60 },
-      { fromSec: 172.28, degPerSec: 6 }, // 「しーっ」に戻る（Intro と同じ）
+      { fromSec: 162.08, degPerSec: 60 },
+      { fromSec: 163.08, degPerSec: 24 },
+      { fromSec: 164.46, degPerSec: 6 }, // 「しーっ」に戻る（Intro と同じ）
       { fromSec: 189.0, degPerSec: 0 },
     ],
   },
@@ -112,6 +113,13 @@ export const CONFIG = {
     stageZoomFrom: 1.0,
     stageZoomTo: 1.05,
     endSec: 16.09,
+    // ささやき（暗転部分の下に小さく）
+    lines: [
+      { from: 1.58, to: 5.2, text: "ねえ、聞こえてる？" },
+      { from: 5.94, to: 8.4, text: "……聞こえないふり？" },
+      { from: 8.9, to: 10.4, text: "ふふっ" },
+      { from: 10.76, to: 12.4, text: "じゃ、もう一回！" },
+    ],
   },
 
   // 歌詞タイポのタイミング（秒）。音声認識の単語位置から
@@ -127,18 +135,19 @@ export const CONFIG = {
     ippaku: 34.02,
     acchi: [36.52, 36.86, 37.26, 37.68],
     matte: 38.42,
-    suki: [39.72, 40.22, 40.58],
+    suki: [39.72, 40.16, 40.58, 41.0], // 好き？（嫌い！）嫌い？（……好き？）
     arara: 41.42,
     seikai: 43.14,
     ayayakoshii: 50.98,
-    nakete: 53.18,
+    shio: 52.04,
+    waratte: 53.18,
     hari: 55.08,
     chaban: 56.88,
     uso: 58.5,
     hikkuri: 60.34,
     nantene: 61.84,
     honki: 63.9,
-    papapa: 67.3,
+    dadada: 68.84,
     acchimo: 70.38,
     yosomi: 72.38,
     neene: 73.36,
@@ -146,34 +155,40 @@ export const CONFIG = {
     sanmai: 79.9,
     nanahenge: 80.84,
     kazu: 82.36,
+    orikou: 85.88,
     sonnayo: 87.18,
     shiranpuri: 89.02,
     datte: [90.74, 91.52, 92.02, 92.42],
+    doudou: 92.86,
     chotto: [94.5, 94.92, 95.38, 95.82],
-    hanashi: 96.26,
+    hanashi: 96.12,
     yakusoku: 97.86,
     yaburu: 100.78,
     crack: 102.8,
     bridgeLines: [
-      { from: 104.04, to: 107.6, text: "ねえ、もしも私が" },
+      { from: 104.04, to: 104.9, text: "……ねえ。" },
+      { from: 104.94, to: 107.8, text: "もしも私が" },
       { from: 108.02, to: 110.9, text: "何も言わなくなったら" },
-      { from: 111.1, to: 113.7, text: "その時は" },
+      { from: 111.1, to: 113.7, text: "そのときは" },
       { from: 113.9, to: 116.2, text: "ちゃんと、聞いてよ。" },
     ],
     brkPink: 126.7,
     brkWhite: 137.01,
     finalLines: [
       { at: 145.36, text: "あまのじゃくじゃく" },
-      { at: 147.14, text: "愛おしい" },
-      { at: 149.56, text: "泣いて笑ってまた転んで" },
+      { at: 147.14, text: "ああ、愛おしい！" },
+      { at: 148.06, text: "間違いだらけの模範解答" },
+      { at: 149.56, text: "泣いて　笑って　また転んで" },
       { at: 151.08, text: "心の針は止まらない" },
+      { at: 152.86, text: "一か八かの大勝負" },
       { at: 154.42, text: "勝ったつもりが負けていて" },
-      { at: 156.22, text: "負けたフリして笑ってる" },
+      { at: 156.22, text: "負けたふりして笑ってる" },
     ],
     minuku: 157.6,
     outroSuki: [160.34, 160.96, 161.46, 162.08, 162.68, 163.08, 163.74],
-    imano1: 164.92,
-    imano2: 172.28,
+    aa: 164.46, // 「……あ。」ここで「しーっ」に戻る
+    imano: 164.92, // 「今の、なし。」
+    imanoEcho: 172.28, // 残響の「今の、なし」
     endChord: 189.0,
   },
 };

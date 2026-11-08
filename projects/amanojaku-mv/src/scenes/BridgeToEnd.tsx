@@ -163,30 +163,34 @@ export const Final: React.FC<{ t: number }> = ({ t }) => {
 /** Outro：好き／嫌いの反転がだんだん遅くなり、「……あ。今の、なし。」で最初の「しーっ」に戻る */
 export const Outro: React.FC<{ t: number }> = ({ t }) => {
   const s = CONFIG.sections.outro;
-  // 歌の「好き嫌い好き」に合わせたあと、間隔を伸ばしていく
-  const flips = [...Q.outroSuki.slice(1), 164.6, 165.7, 167.1, 169.0, 171.4];
-  if (t >= Q.imano2) {
-    const zoom = interpolate(t, [Q.imano2, s.to], [1.12, 1.0]);
+  const words = Q.outroSuki; // 好き、嫌い、好き、嫌い、好き、嫌い、好き……
+  if (t >= Q.aa) {
+    const zoom = interpolate(t, [Q.aa, s.to], [1.0, 1.14]);
     return (
       <AbsoluteFill>
         <ShhSpot zoom={zoom} />
-        {between(t, Q.imano2, Q.imano2 + 3.2, <Typo text="……あ。今の、なし。" y={H * 0.92} size={40} color="white" font="body" tracking={0.2} />)}
+        {between(t, Q.aa, Q.imano, <Typo text="……あ。" y={H * 0.92} size={40} color="white" font="body" tracking={0.2} />)}
+        {between(t, Q.imano, Q.imano + 3.0, <Typo text="今の、なし。" y={H * 0.92} size={40} color="white" font="body" tracking={0.2} />)}
+        {/* 残響の「今の、なし」は裏の私の声として左右反転で */}
+        {between(t, Q.imanoEcho, Q.imanoEcho + 2.4, <Typo text="今の、なし。" y={H * 0.92} size={40} color="pink" font="body" tracking={0.2} flip />)}
       </AbsoluteFill>
     );
   }
   let n = 0;
-  for (const f of flips) if (t >= f) n++;
-  const like = n % 2 === 0;
+  for (const w of words) if (t >= w) n++;
+  const idx = Math.max(0, n - 1);
+  const like = idx % 2 === 0;
+  const last = idx === words.length - 1;
+  const text = last ? "好き……" : like ? "好き" : "嫌い";
   return (
     <AbsoluteFill>
       <Bg color="white" />
       <Needle opacity={0.14} />
       <Chara id="chara-reach-grin-cutout" h={1100} cx={W * 0.78} cy={H * 0.58} />
       <Chara id="chara-reach-grin-cutout" h={1100} cx={W * 0.22} cy={H * 0.58} flip />
-      <Sign t={t} flips={flips} x={W * 0.5} y={H * 0.48} h={760} flipSec={interpolate(t, [s.from, Q.imano2], [0.12, 0.4])} />
-      {t < 163.74 ? <Typo text={like ? "好き" : "嫌い"} x={like ? W * 0.5 : W * 0.5} y={H * 0.9} size={90} color={like ? "pink" : "black"} /> : null}
-      {between(t, 163.74, Q.imano1, <Typo text="好きって……" y={H * 0.9} size={70} font="body" />)}
-      {between(t, Q.imano1, Q.imano1 + 2.2, <Typo text="今の、なし" y={H * 0.9} size={70} font="body" />)}
+      {/* 返す動きがだんだん遅くなる */}
+      <Sign t={t} flips={words.slice(1)} x={W * 0.5} y={H * 0.48} h={760} flipSec={interpolate(t, [s.from, Q.aa], [0.1, 0.45])} />
+      <Typo text={text} y={H * 0.9} size={90} color={like ? "pink" : "black"} outline="white" />
     </AbsoluteFill>
   );
 };

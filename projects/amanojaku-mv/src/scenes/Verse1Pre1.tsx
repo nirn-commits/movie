@@ -5,7 +5,7 @@ import { Chara, Sign, Typo, faceOf } from "../components/kit";
 import { Needle } from "../components/Needle";
 import { Stage } from "../components/Stage";
 import { beatPhase } from "../lib/beats";
-import { after, between, onBeat } from "../lib/shots";
+import { between, onBeat } from "../lib/shots";
 
 const W = CONFIG.width;
 const H = CONFIG.height;
@@ -48,6 +48,7 @@ export const Verse1: React.FC<{ t: number }> = ({ t }) => {
     )),
     onBeat(Q.uragaeshi, () => (
       <>
+        <Typo text="ご機嫌いかがと" x={W * 0.3} y={H * 0.16} size={80} />
         <Typo text="裏返し" x={W * 0.3} y={H * 0.5} size={260} rotate={180} color="pink" tracking={0.1} />
         <Chara id={FULL} h={1040} cx={W * 0.72} flip />
       </>
@@ -55,14 +56,14 @@ export const Verse1: React.FC<{ t: number }> = ({ t }) => {
     onBeat(Q.aisou, () => (
       <>
         <Chara id={FULL} h={2000} focus={faceOf(FULL)} cy={H * 0.33} />
-        <Typo text="愛想笑いはお手の物" y={H * 0.86} size={84} outline="white" />
+        <Typo text="愛想笑いはお手のもの" y={H * 0.86} size={84} outline="white" />
       </>
     )),
     // 「本音は」：口元のアップに一瞬だけ寄る
     onBeat(Q.honne, () => <Chara id={FULL} h={6400} focus={faceOf(FULL, "mouth")} cy={H * 0.5} />),
     onBeat(Q.kigyou + 0.4, () => (
       <>
-        <Typo text="本音は" x={W * 0.3} y={H * 0.3} size={90} />
+        <Typo text="でも本音は" x={W * 0.3} y={H * 0.3} size={90} />
         <Typo text="企業秘密" x={W * 0.32} y={H * 0.55} size={190} color="pink" rotate={-6} />
         <Chara id={FULL} h={1040} cx={W * 0.72} />
       </>
@@ -108,11 +109,11 @@ const Split: React.FC<{
 export const Pre1: React.FC<{ t: number }> = ({ t }) => {
   const s = CONFIG.sections.pre1;
   const bounce = 0.03 * Math.pow(1 - beatPhase(t), 3);
-  const words = ["あっち？", "こっち？", "どっち？", "そっち？"];
+  const words = ["あっち？", "（こっち！）", "どっち？", "（そっち！）"];
   const shots = [
     onBeat(s.from, () => <Split front={ANGRY} back={ANGRY} speaker="front" frontText="あれもこれも欲張って" />),
     onBeat(Q.doremo, () => <Split front={ANGRY} back={ANGRY} speaker="back" backText="どれもそれも退屈で" />),
-    onBeat(32.48, () => <Split front={SURPRISED} back={SURPRISED} />),
+    onBeat(32.48, () => <Split front={SURPRISED} back={SURPRISED} centerText="予定調和の三拍子" />),
     onBeat(Q.ippaku, () => <Split front={GRIN} back={GRIN} bounce={bounce} centerText="一拍余計に踊りましょ" />),
     // あっち？こっち？どっち？そっち？：一語ごとに表と裏を全画面で切り替える
     ...Q.acchi.map((at, i) => {
@@ -128,23 +129,37 @@ export const Pre1: React.FC<{ t: number }> = ({ t }) => {
         isBack ? "black" : "white",
       );
     }),
-    onBeat(Q.matte, () => <Split front={SURPRISED} back={SURPRISED} centerText="待って ちょっと まだ切らないで" />),
-    // 好き？（嫌い！）好き？：札をパタパタ反転。「嫌い！」は裏の私が横から割り込む
+    onBeat(Q.matte, () => <Split front={SURPRISED} back={SURPRISED} centerText="待って、ちょっと、まだ決めないで！" />),
+    // 好き？（嫌い！）嫌い？（……好き？）：札をパタパタ反転。カッコ内は裏の私が左から割り込む
     onBeat(
       Q.suki[0],
       () => {
-        const backIn = interpolate(t, [Q.suki[1] - 0.05, Q.suki[1] + 0.08, Q.suki[2] - 0.05, Q.suki[2] + 0.05], [-700, 0, 0, -900], {
+        const [a, b, c, d] = Q.suki;
+        const backIn = interpolate(t, [b - 0.05, b + 0.08, c - 0.06, c + 0.04, d - 0.05, d + 0.08], [-760, 0, 0, -760, -760, 0], {
           extrapolateLeft: "clamp",
           extrapolateRight: "clamp",
         });
+        const word = t < b ? "好き？" : t < c ? "（嫌い！）" : t < d ? "嫌い？" : "（……好き？）";
+        const isBack = word.startsWith("（");
         return (
           <>
             <Chara id={GRIN} h={1250} cx={W * 0.7} cy={H * 0.58} focus={faceOf(GRIN)} />
-            <Sign t={t} flips={[Q.suki[1], Q.suki[2]]} x={W * 0.42} y={H * 0.5} h={620} rotate={-8} />
+            <Sign t={t} flips={[b, d]} x={W * 0.42} y={H * 0.5} h={620} rotate={-8} />
             <Chara id={ANGRY} h={1400} cx={W * 0.12 + backIn} cy={H * 0.5} focus={faceOf(ANGRY)} flip />
-            {between(t, Q.suki[0], Q.suki[1], <Typo text="好き？" x={W * 0.42} y={H * 0.9} size={120} color="pink" />)}
-            {between(t, Q.suki[1], Q.suki[2], <Typo text="（嫌い！）" x={W * 0.3} y={H * 0.12} size={120} color="black" rotate={-4} />)}
-            {after(t, Q.suki[2], <Typo text="好き？" x={W * 0.42} y={H * 0.9} size={120} color="pink" />)}
+            {between(
+              t,
+              a,
+              Q.arara,
+              <Typo
+                text={word}
+                x={isBack ? W * 0.3 : W * 0.44}
+                y={isBack ? H * 0.12 : H * 0.9}
+                size={120}
+                color={isBack ? "black" : "pink"}
+                rotate={isBack ? -4 : 0}
+                outline="white"
+              />,
+            )}
           </>
         );
       },
@@ -155,7 +170,8 @@ export const Pre1: React.FC<{ t: number }> = ({ t }) => {
       () => (
         <>
           <Chara id={SURPRISED} h={1500} focus={faceOf(SURPRISED)} cy={H * 0.4} />
-          <Typo text="あらら" x={W * 0.2} y={H * 0.3} size={150} color="pink" rotate={-12} />
+          <Typo text="あらら、" x={W * 0.2} y={H * 0.3} size={150} color="pink" rotate={-12} />
+          <Typo text="舌がもつれちゃった" y={H * 0.88} size={96} outline="white" />
         </>
       ),
       "white",

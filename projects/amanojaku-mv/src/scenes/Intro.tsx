@@ -2,6 +2,7 @@ import { AbsoluteFill, Img, interpolate, useCurrentFrame, useVideoConfig } from 
 import { CONFIG, sec } from "../config";
 import { getImage } from "../lib/assets";
 import { Needle } from "../components/Needle";
+import { Typo } from "../components/kit";
 
 /** 素材が届くまでの仮枠。代用の絵は使わない */
 const MissingFrame: React.FC<{ label: string; height: number }> = ({ label, height }) => (
@@ -87,5 +88,12 @@ export const Intro: React.FC = () => {
     );
   }
 
-  return <ShhSpot zoom={interpolate(frame, [0, flashStart], [p.zoomFrom, p.zoomTo])} />;
+  const t = frame / fps;
+  const line = p.lines.find((l) => t >= l.from && t < l.to);
+  return (
+    <AbsoluteFill>
+      <ShhSpot zoom={interpolate(frame, [0, flashStart], [p.zoomFrom, p.zoomTo])} />
+      {line ? <Typo text={line.text} y={CONFIG.height * 0.92} size={40} color="white" font="body" tracking={0.2} /> : null}
+    </AbsoluteFill>
+  );
 };
