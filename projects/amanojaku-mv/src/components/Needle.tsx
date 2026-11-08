@@ -17,26 +17,31 @@ export const needleAngle = (tSec: number, speeds: Speed[]) => {
 };
 
 /** 通しモチーフ「心の針」（素材 prop-needle）。中心リングを軸に回す */
-export const Needle: React.FC = () => {
+export const Needle: React.FC<{
+  x?: number;
+  y?: number;
+  scale?: number;
+  opacity?: number;
+  offsetDeg?: number;
+}> = ({ x = CONFIG.width / 2, y = CONFIG.height / 2, scale = 1, opacity, offsetDeg = 0 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const n = CONFIG.needle;
   const img = getImage(n.imageId);
-  const w = n.widthPx;
+  const w = n.widthPx * scale;
   const h = (w * (img.height ?? 1)) / (img.width ?? 1);
-  const angle = n.restAngleDeg + needleAngle(frame / fps, n.speeds);
+  const angle = n.restAngleDeg + offsetDeg + needleAngle(frame / fps, n.speeds);
 
   return (
-    <AbsoluteFill style={{ opacity: n.opacity }}>
+    <AbsoluteFill style={{ opacity: opacity ?? n.opacity }}>
       <Img
         src={img.src}
         style={{
           position: "absolute",
           width: w,
           height: h,
-          // 中心リングを画面中央に置き、そこを軸に回す
-          left: CONFIG.width / 2 - w * n.pivot.x,
-          top: CONFIG.height / 2 - h * n.pivot.y,
+          left: x - w * n.pivot.x,
+          top: y - h * n.pivot.y,
           transformOrigin: `${n.pivot.x * 100}% ${n.pivot.y * 100}%`,
           transform: `rotate(${angle}deg)`,
         }}

@@ -1,6 +1,6 @@
 {
   "generatedBy": "scripts/scan-assets.mjs",
-  "count": 19,
+  "count": 28,
   "assets": [
     {
       "id": "bgm-amanojaku-jaku",
@@ -25,6 +25,27 @@
       "channels": 2
     },
     {
+      "id": "dela-gothic-one",
+      "path": "assets/fonts/dela-gothic-one.ttf",
+      "type": "font",
+      "format": "ttf",
+      "sizeBytes": 2508848
+    },
+    {
+      "id": "zen-kaku-gothic-new-black",
+      "path": "assets/fonts/zen-kaku-gothic-new-black.ttf",
+      "type": "font",
+      "format": "ttf",
+      "sizeBytes": 2300600
+    },
+    {
+      "id": "zen-kaku-gothic-new-medium",
+      "path": "assets/fonts/zen-kaku-gothic-new-medium.ttf",
+      "type": "font",
+      "format": "ttf",
+      "sizeBytes": 2328176
+    },
+    {
       "id": "bg-stage-curtain",
       "path": "assets/images/bg-stage-curtain.png",
       "type": "image",
@@ -43,6 +64,15 @@
       "height": 1824
     },
     {
+      "id": "chara-fullbody-arms-crossed-cutout",
+      "path": "assets/images/chara-fullbody-arms-crossed-cutout.png",
+      "type": "image",
+      "format": "png",
+      "sizeBytes": 1140376,
+      "width": 1248,
+      "height": 1824
+    },
+    {
       "id": "chara-fullbody-arms-crossed",
       "path": "assets/images/chara-fullbody-arms-crossed.png",
       "type": "image",
@@ -52,11 +82,29 @@
       "height": 1824
     },
     {
+      "id": "chara-point-angry-cutout",
+      "path": "assets/images/chara-point-angry-cutout.png",
+      "type": "image",
+      "format": "png",
+      "sizeBytes": 935689,
+      "width": 1248,
+      "height": 1824
+    },
+    {
       "id": "chara-point-angry",
       "path": "assets/images/chara-point-angry.png",
       "type": "image",
       "format": "png",
       "sizeBytes": 1025938,
+      "width": 1248,
+      "height": 1824
+    },
+    {
+      "id": "chara-reach-grin-cutout",
+      "path": "assets/images/chara-reach-grin-cutout.png",
+      "type": "image",
+      "format": "png",
+      "sizeBytes": 1512750,
       "width": 1248,
       "height": 1824
     },
@@ -88,6 +136,15 @@
       "height": 1824
     },
     {
+      "id": "chara-sing-shout-cutout",
+      "path": "assets/images/chara-sing-shout-cutout.png",
+      "type": "image",
+      "format": "png",
+      "sizeBytes": 1511705,
+      "width": 1248,
+      "height": 1824
+    },
+    {
       "id": "chara-sing-shout",
       "path": "assets/images/chara-sing-shout.png",
       "type": "image",
@@ -97,11 +154,29 @@
       "height": 1824
     },
     {
+      "id": "chara-smile-tear-cutout",
+      "path": "assets/images/chara-smile-tear-cutout.png",
+      "type": "image",
+      "format": "png",
+      "sizeBytes": 1341218,
+      "width": 1248,
+      "height": 1824
+    },
+    {
       "id": "chara-smile-tear",
       "path": "assets/images/chara-smile-tear.png",
       "type": "image",
       "format": "png",
       "sizeBytes": 1354750,
+      "width": 1248,
+      "height": 1824
+    },
+    {
+      "id": "chara-surprised-hands-cutout",
+      "path": "assets/images/chara-surprised-hands-cutout.png",
+      "type": "image",
+      "format": "png",
+      "sizeBytes": 1387749,
       "width": 1248,
       "height": 1824
     },

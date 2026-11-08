@@ -16,53 +16,21 @@ const MissingFrame: React.FC<{ label: string; height: number }> = ({ label, heig
       color: CONFIG.color.white,
       fontFamily: "sans-serif",
       fontSize: 40,
-      textAlign: "center",
-      lineHeight: 1.6,
-      padding: 40,
-      boxSizing: "border-box",
     }}
   >
     {label}
   </div>
 );
 
-/** シーン1：黒＋ピンスポットの「しーっ」→ 白フラッシュ → ステージ */
-export const Intro: React.FC = () => {
+/** 黒背景＋ピンスポットの「しーっ」。Intro と Outro で共用 */
+export const ShhSpot: React.FC<{ zoom: number }> = ({ zoom }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const p = CONFIG.intro;
   const c = CONFIG.color;
-  const flashStart = sec(p.flashSec, fps);
-  const flashEnd = flashStart + p.flashFrames;
-
-  // ---- 白フラッシュ（ハードカット） ----
-  if (frame >= flashStart && frame < flashEnd) {
-    return <AbsoluteFill style={{ backgroundColor: c.white }} />;
-  }
-
-  // ---- ステージ（フラッシュ後〜Verse 1 直前） ----
-  if (frame >= flashEnd) {
-    const stage = getImage(p.stageImageId);
-    const scale = interpolate(frame, [flashEnd, sec(p.endSec, fps)], [p.stageZoomFrom, p.stageZoomTo], {
-      extrapolateRight: "clamp",
-    });
-    return (
-      <AbsoluteFill style={{ backgroundColor: c.black }}>
-        <Img
-          src={stage.src}
-          style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(${scale})` }}
-        />
-        <Needle />
-      </AbsoluteFill>
-    );
-  }
-
-  // ---- 黒背景＋ピンスポット ----
-  const zoom = interpolate(frame, [0, flashStart], [p.zoomFrom, p.zoomTo]);
   const breath = 1 - p.spotBreath * (0.5 + 0.5 * Math.sin((2 * Math.PI * frame) / (p.spotBreathPeriodSec * fps)));
   const inner = p.spotRadiusPx;
   const outer = p.spotRadiusPx + p.spotSoftnessPx;
-
   const cy = `${p.spotCenterYPct}%`;
   return (
     <AbsoluteFill style={{ backgroundColor: c.black }}>
@@ -88,4 +56,36 @@ export const Intro: React.FC = () => {
       />
     </AbsoluteFill>
   );
+};
+
+/** シーン1：黒＋ピンスポットの「しーっ」→ 白フラッシュ → ステージ */
+export const Intro: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const p = CONFIG.intro;
+  const c = CONFIG.color;
+  const flashStart = sec(p.flashSec, fps);
+  const flashEnd = flashStart + p.flashFrames;
+
+  if (frame >= flashStart && frame < flashEnd) {
+    return <AbsoluteFill style={{ backgroundColor: c.white }} />;
+  }
+
+  if (frame >= flashEnd) {
+    const stage = getImage(p.stageImageId);
+    const scale = interpolate(frame, [flashEnd, sec(p.endSec, fps)], [p.stageZoomFrom, p.stageZoomTo], {
+      extrapolateRight: "clamp",
+    });
+    return (
+      <AbsoluteFill style={{ backgroundColor: c.black }}>
+        <Img
+          src={stage.src}
+          style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(${scale})` }}
+        />
+        <Needle />
+      </AbsoluteFill>
+    );
+  }
+
+  return <ShhSpot zoom={interpolate(frame, [0, flashStart], [p.zoomFrom, p.zoomTo])} />;
 };
