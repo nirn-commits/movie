@@ -1,0 +1,23 @@
+# 依存
+node_modules/
+
+# 環境変数
+.env*
+
+# 書き出し物（素材ではない。.gitkeep のみ残す）
+out/*
+!out/.gitkeep
+projects/*/out/
+
+# 公式スキルのインストール先（ベンダーコピーは含めない。scripts/setup.sh で入れる）
+.claude/skills/
+.agents/skills/
+
+# レンダリング中間物
+.hyperframes/
+.remotion/
+projects/*/build/
+projects/*/dist/
+*.tmp
+*.part
+.DS_Store

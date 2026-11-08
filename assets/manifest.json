@@ -1,0 +1,26 @@
+{
+  "generatedBy": "scripts/scan-assets.mjs",
+  "count": 2,
+  "assets": [
+    {
+      "id": "sample-test-tone",
+      "path": "assets/audio/sfx/sample-test-tone.wav",
+      "type": "audio",
+      "role": "sfx",
+      "format": "wav",
+      "sizeBytes": 576078,
+      "durationSec": 3,
+      "sampleRate": 48000,
+      "channels": 2
+    },
+    {
+      "id": "sample-test-image",
+      "path": "assets/images/sample-test-image.png",
+      "type": "image",
+      "format": "png",
+      "sizeBytes": 21695,
+      "width": 1280,
+      "height": 720
+    }
+  ]
+}
