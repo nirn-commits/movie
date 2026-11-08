@@ -24,10 +24,11 @@ export const CONFIG = {
 
   // 通しモチーフ「心の針」
   needle: {
+    imageId: "prop-needle",
     opacity: 0.18,
-    lengthPx: 760,
-    widthPx: 34,
-    ringPx: 820,
+    widthPx: 640, // 表示幅
+    pivot: { x: 180.2 / 407, y: 210.2 / 405 }, // 素材内の中心リングの位置（回転軸）
+    restAngleDeg: -47.4, // 素材の先端は右上 47.4°。真上を 0° にそろえる補正
     // 区間ごとの回転速度（度/秒）。角度は速度の積分なので、どのフレームでも一意に決まる
     speeds: [
       { fromSec: 0, degPerSec: 6 }, // Intro：ゆっくり
@@ -38,13 +39,17 @@ export const CONFIG = {
   // ===== シーン1：Intro（0 〜 16.09s）=====
   intro: {
     // 「しーっ」の絵：素材未受領。null の間は「素材なし」の仮枠を出す
-    shhImageId: null as string | null,
+    shhImageId: "chara-shh-smile-cutout" as string | null, // 背景を透明にした切り抜き版
     shhMissingLabel: "素材なし：「しーっ」の絵",
-    imageHeightPx: 980,
+    imageHeightPx: 1100, // 下端が画面外に出る高さ
     zoomFrom: 1.0,
     zoomTo: 1.12,
-    spotRadiusPx: 520, // ピンスポットの半径
-    spotSoftnessPx: 260, // ピンスポットの縁のぼかし幅
+    spotCenterYPct: 46, // ピンスポットの中心（画面の上から %）
+    spotGlowRadiusPx: 560, // 背後の光の円の半径
+    spotGlowAlpha: 0.16, // 背後の光の円の明るさ（白の不透明度）
+    spotRadiusPx: 360, // 手前の減光が始まる半径
+    spotSoftnessPx: 320, // 手前の減光のぼかし幅
+    spotEdgeAlpha: 0.85, // 画面端での減光の濃さ
     spotBreath: 0.04, // ピンスポットの明るさの揺らぎ（0〜1）
     spotBreathPeriodSec: 4,
     flashSec: 12.4, // 「じゃ、もう一回！」直後の一撃

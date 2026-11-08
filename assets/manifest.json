@@ -1,6 +1,6 @@
 {
   "generatedBy": "scripts/scan-assets.mjs",
-  "count": 11,
+  "count": 19,
   "assets": [
     {
       "id": "bgm-amanojaku-jaku",
@@ -70,6 +70,24 @@
       "height": 1824
     },
     {
+      "id": "chara-shh-smile-cutout",
+      "path": "assets/images/chara-shh-smile-cutout.png",
+      "type": "image",
+      "format": "png",
+      "sizeBytes": 1723966,
+      "width": 1248,
+      "height": 1824
+    },
+    {
+      "id": "chara-shh-smile",
+      "path": "assets/images/chara-shh-smile.png",
+      "type": "image",
+      "format": "png",
+      "sizeBytes": 1799642,
+      "width": 1248,
+      "height": 1824
+    },
+    {
       "id": "chara-sing-shout",
       "path": "assets/images/chara-sing-shout.png",
       "type": "image",
@@ -95,6 +113,60 @@
       "sizeBytes": 1402403,
       "width": 1248,
       "height": 1824
+    },
+    {
+      "id": "prop-cards-fan",
+      "path": "assets/images/prop-cards-fan.png",
+      "type": "image",
+      "format": "png",
+      "sizeBytes": 260043,
+      "width": 588,
+      "height": 373
+    },
+    {
+      "id": "prop-heart-broken",
+      "path": "assets/images/prop-heart-broken.png",
+      "type": "image",
+      "format": "png",
+      "sizeBytes": 109990,
+      "width": 381,
+      "height": 313
+    },
+    {
+      "id": "prop-needle",
+      "path": "assets/images/prop-needle.png",
+      "type": "image",
+      "format": "png",
+      "sizeBytes": 62377,
+      "width": 407,
+      "height": 405
+    },
+    {
+      "id": "prop-sign-dislike",
+      "path": "assets/images/prop-sign-dislike.png",
+      "type": "image",
+      "format": "png",
+      "sizeBytes": 132278,
+      "width": 272,
+      "height": 528
+    },
+    {
+      "id": "prop-sign-like",
+      "path": "assets/images/prop-sign-like.png",
+      "type": "image",
+      "format": "png",
+      "sizeBytes": 135847,
+      "width": 269,
+      "height": 528
+    },
+    {
+      "id": "props-sheet",
+      "path": "assets/images/props-sheet.png",
+      "type": "image",
+      "format": "png",
+      "sizeBytes": 1848450,
+      "width": 1254,
+      "height": 1254
     },
     {
       "id": "sample-test-image",

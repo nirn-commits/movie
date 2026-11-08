@@ -38,9 +38,14 @@
 | `chara-reach-grin` | 手を差し出してニヤリ | Chorus／Final Chorus |
 | `chara-smile-tear` | 涙を浮かべた笑顔 | Final Chorus の「ニヤリが消える瞬間」（仮） |
 | `chara-back-sitting` | 黒背景で座り込む背中 | Bridge「3枚目の背中」 |
+| `chara-shh-smile` / `chara-shh-smile-cutout` | 「しーっ」の絵（cutout は背景透明） | Intro・Outro |
+| `prop-needle` | コンパスの針 | 通しモチーフ「心の針」 |
+| `prop-cards-fan` | トランプ5枚 | Chorus「とんだ茶番」、Instrumental Break |
+| `prop-sign-like` / `prop-sign-dislike` | 好き／嫌いの札 | Pre-Chorus のパタパタ反転、Outro |
+| `prop-heart-broken` | 割れたハート | 未定 |
+| `props-sheet` | 上記小道具の元シート | 切り出し元 |
 
 **未受領**
-- 「しーっ」の絵（Intro と Outro で使用。現在は仮枠を表示）
 - 歌詞テキストとそのタイミング（歌詞タイポに必要）
 - ディレクション中の「1枚目」「3枚目」「4枚目」と上記 id の対応（上の表は推定）
 

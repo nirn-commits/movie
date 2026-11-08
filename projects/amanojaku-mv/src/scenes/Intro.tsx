@@ -52,7 +52,7 @@ export const Intro: React.FC = () => {
           src={stage.src}
           style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(${scale})` }}
         />
-        <Needle tone="onDark" />
+        <Needle />
       </AbsoluteFill>
     );
   }
@@ -63,9 +63,16 @@ export const Intro: React.FC = () => {
   const inner = p.spotRadiusPx;
   const outer = p.spotRadiusPx + p.spotSoftnessPx;
 
+  const cy = `${p.spotCenterYPct}%`;
   return (
     <AbsoluteFill style={{ backgroundColor: c.black }}>
-      <Needle tone="onDark" />
+      {/* 背後：ピンスポットが当たった光の円 */}
+      <AbsoluteFill
+        style={{
+          background: `radial-gradient(circle at 50% ${cy}, rgba(255,255,255,${p.spotGlowAlpha * breath}) 0px, rgba(255,255,255,0) ${p.spotGlowRadiusPx}px)`,
+        }}
+      />
+      <Needle />
       <AbsoluteFill style={{ justifyContent: "center", alignItems: "center", transform: `scale(${zoom})` }}>
         {p.shhImageId ? (
           <Img src={getImage(p.shhImageId).src} style={{ height: p.imageHeightPx }} />
@@ -73,11 +80,10 @@ export const Intro: React.FC = () => {
           <MissingFrame label={p.shhMissingLabel} height={p.imageHeightPx} />
         )}
       </AbsoluteFill>
-      {/* ピンスポット：中心だけ明るく、外側は黒に落とす */}
+      {/* 手前：スポットの外を黒に落とす */}
       <AbsoluteFill
         style={{
-          background: `radial-gradient(circle at 50% 48%, rgba(0,0,0,0) ${inner}px, ${c.black} ${outer}px)`,
-          opacity: breath,
+          background: `radial-gradient(circle at 50% ${cy}, rgba(0,0,0,0) ${inner}px, rgba(17,16,20,${p.spotEdgeAlpha}) ${outer}px)`,
         }}
       />
     </AbsoluteFill>
