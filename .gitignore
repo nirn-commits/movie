@@ -1,0 +1,24 @@
+# 依存
+node_modules/
+
+# 環境変数
+.env*
+
+# 書き出し（.gitkeep は残す）
+out/*
+!out/.gitkeep
+
+# インストールした公式スキル（ベンダーコピーは含めない）
+.claude/skills/
+.agents/skills/
+
+# レンダリング中間物
+.remotion/
+.hyperframes/
+**/dist/
+**/build/
+*.tmp
+*.part
+frames/
+**/out/frames/
+.DS_Store
