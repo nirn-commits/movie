@@ -1,7 +1,18 @@
 {
   "generatedBy": "scripts/scan-assets.mjs",
-  "count": 2,
+  "count": 11,
   "assets": [
+    {
+      "id": "bgm-amanojaku-jaku",
+      "path": "assets/audio/bgm/bgm-amanojaku-jaku.mp3",
+      "type": "audio",
+      "role": "bgm",
+      "format": "mp3",
+      "sizeBytes": 4424627,
+      "durationSec": 191.664,
+      "sampleRate": 48000,
+      "channels": 2
+    },
     {
       "id": "sample-test-tone",
       "path": "assets/audio/sfx/sample-test-tone.wav",
@@ -12,6 +23,78 @@
       "durationSec": 3,
       "sampleRate": 48000,
       "channels": 2
+    },
+    {
+      "id": "bg-stage-curtain",
+      "path": "assets/images/bg-stage-curtain.png",
+      "type": "image",
+      "format": "png",
+      "sizeBytes": 443375,
+      "width": 1920,
+      "height": 1280
+    },
+    {
+      "id": "chara-back-sitting",
+      "path": "assets/images/chara-back-sitting.png",
+      "type": "image",
+      "format": "png",
+      "sizeBytes": 1394818,
+      "width": 1248,
+      "height": 1824
+    },
+    {
+      "id": "chara-fullbody-arms-crossed",
+      "path": "assets/images/chara-fullbody-arms-crossed.png",
+      "type": "image",
+      "format": "png",
+      "sizeBytes": 3045602,
+      "width": 1248,
+      "height": 1824
+    },
+    {
+      "id": "chara-point-angry",
+      "path": "assets/images/chara-point-angry.png",
+      "type": "image",
+      "format": "png",
+      "sizeBytes": 1025938,
+      "width": 1248,
+      "height": 1824
+    },
+    {
+      "id": "chara-reach-grin",
+      "path": "assets/images/chara-reach-grin.png",
+      "type": "image",
+      "format": "png",
+      "sizeBytes": 2777434,
+      "width": 1248,
+      "height": 1824
+    },
+    {
+      "id": "chara-sing-shout",
+      "path": "assets/images/chara-sing-shout.png",
+      "type": "image",
+      "format": "png",
+      "sizeBytes": 1466210,
+      "width": 1248,
+      "height": 1824
+    },
+    {
+      "id": "chara-smile-tear",
+      "path": "assets/images/chara-smile-tear.png",
+      "type": "image",
+      "format": "png",
+      "sizeBytes": 1354750,
+      "width": 1248,
+      "height": 1824
+    },
+    {
+      "id": "chara-surprised-hands",
+      "path": "assets/images/chara-surprised-hands.png",
+      "type": "image",
+      "format": "png",
+      "sizeBytes": 1402403,
+      "width": 1248,
+      "height": 1824
     },
     {
       "id": "sample-test-image",
